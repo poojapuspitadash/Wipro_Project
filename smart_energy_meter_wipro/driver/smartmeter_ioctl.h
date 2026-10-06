@@ -1,0 +1,11 @@
+#ifndef SMARTMETER_IOCTL_H
+#define SMARTMETER_IOCTL_H
+
+#include <linux/ioctl.h>
+
+#define SMARTMETER_IOC_MAGIC 'S'
+#define SMARTMETER_RESET _IO(SMARTMETER_IOC_MAGIC, 0)
+#define SMARTMETER_GET_COUNT _IOR(SMARTMETER_IOC_MAGIC, 1, unsigned long)
+#define SMARTMETER_SET_COUNT _IOW(SMARTMETER_IOC_MAGIC, 2, unsigned long)
+
+#endif

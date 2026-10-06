@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smart Energy Monitor</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="bolt">⚡</span><div><h1>SMART ENERGY MONITOR</h1><p>Linux Device Driver • C++ System Programming • Energy Analytics</p></div></div>
+  <div class="online"><span class="dot" id="onlineDot"></span><span id="onlineText">SYSTEM ONLINE</span></div>
+</header>
+
+<main>
+  <section class="cards">
+    <article class="metric"><span>Pulse Count</span><strong id="pulses">0</strong><small>meter pulses</small></article>
+    <article class="metric"><span>Energy</span><strong><span id="kwh">0.000</span> kWh</strong><small id="wh">0.0 Wh</small></article>
+    <article class="metric"><span>Power</span><strong><span id="power">0</span> W</strong><small>instantaneous estimate</small></article>
+    <article class="metric status-card"><span>Status</span><strong id="status">NORMAL</strong><small id="threshold">Threshold: 3000 W</small></article>
+  </section>
+
+  <section class="panel hero-panel">
+    <div class="panel-title"><div><h2>LIVE POWER CONSUMPTION</h2><p>Real-time power derived from pulse activity</p></div><span class="live-pill">● LIVE</span></div>
+    <div class="chart-wrap"><canvas id="powerChart"></canvas><div class="empty-chart" id="powerEmpty">Waiting for meter data…</div></div>
+  </section>
+
+  <section class="two-col">
+    <section class="panel">
+      <div class="panel-title"><div><h2>ENERGY CONSUMPTION</h2><p>Cumulative energy usage</p></div></div>
+      <div class="chart-wrap small"><canvas id="energyChart"></canvas><div class="empty-chart" id="energyEmpty">Waiting for meter data…</div></div>
+    </section>
+    <section class="panel info-panel">
+      <div class="panel-title"><div><h2>SYSTEM INFORMATION</h2><p>Current application state</p></div></div>
+      <div class="info-row"><span>Driver</span><b id="driverState">Connected</b></div>
+      <div class="info-row"><span>Device</span><b id="device">/dev/smartmeter</b></div>
+      <div class="info-row"><span>Mode</span><b id="mode">LINUX DRIVER</b></div>
+      <div class="info-row"><span>Threshold</span><b id="thresholdInfo">3000 W</b></div>
+      <div class="info-row"><span>Pulse ratio</span><b id="ratio">1000 pulses/kWh</b></div>
+    </section>
+  </section>
+
+  <section class="panel controls-panel">
+    <div class="panel-title"><div><h2>METER CONTROLS</h2><p>Add simulated meter pulses or reset the counter.</p></div></div>
+    <div class="controls">
+      <button onclick="pulse(1)">＋ Add 1 Pulse</button>
+      <button onclick="pulse(10)">＋ Add 10 Pulses</button>
+      <button onclick="pulse(100)">＋ Add 100 Pulses</button>
+      <button onclick="pulse(1000)">＋ Add 1000 Pulses</button>
+      <button class="reset" onclick="resetMeter()">↻ Reset</button>
+      <a class="export" href="/api/export">⇩ Export CSV</a>
+    </div>
+  </section>
+
+  <section class="pipeline panel">
+    <div class="pipeline-title">PROJECT DATA FLOW</div>
+    <div class="flow"><span>Pulse Input</span><i>→</i><span>Linux Driver</span><i>→</i><span>C++ App</span><i>→</i><span>Energy / Power</span><i>→</i><span>Alert Manager</span><i>→</i><span>Dashboard</span></div>
+  </section>
+</main>
+<footer>Smart Energy Meter • Wipro Training Project • Linux + C++</footer>
+<script src="/app.js"></script>
+</body>
+</html>
